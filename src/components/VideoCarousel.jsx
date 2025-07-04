@@ -156,15 +156,22 @@ const VideoCarousel = () => {
         {hightlightsSlides.map((list, i) => (
           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
             <div className="video-carousel_container">
-              <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
+              <div className="w-full h-full flex-center rounded-3xl overflow-hidden">
                 <video
                   id="video"
                   playsInline={true}
                   preload="auto"
                   muted
+                  // to set ref for each video element
                   ref={(el) => (videoRef.current[i] = el)}
+                  className={`${
+                    list.id === 2 && "translate-x-44"
+                  } pointer-events-none`}
                   onEnded={() => {
-                    if (i !== hightlightsSlides.length - 1) {
+                    if (i === 2) {
+                      // Because the 3rd video is too short, we need to wait for 2 seconds
+                      setTimeout(() => handleProcess("video-end", i), 2000);
+                    } else if (i !== hightlightsSlides.length - 1) {
                       // End current one and move to the next
                       handleProcess("video-end", i);
                     } else {
@@ -201,6 +208,7 @@ const VideoCarousel = () => {
           {
             // underscore _ means we are not using the value
             videoRef.current.map((_, i) => (
+              // to reference each video div and span
               <span
                 key={i}
                 ref={(el) => (videoDivRef.current[i] = el)}
@@ -221,8 +229,6 @@ const VideoCarousel = () => {
             onClick={
               isLastVideo
                 ? () => handleProcess("video-reset")
-                : !isPlaying
-                ? () => handleProcess("play")
                 : () => handleProcess("play")
             }
           ></img>
