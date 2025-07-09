@@ -12,15 +12,15 @@ const Highlights = () => {
     gsap.to(".link", {
       opacity: 1,
       y: 0,
-      duration: 1,
       stagger: 0.25,
+      duration: 1,
     });
   }, []);
 
   return (
     <section
       id="highlights"
-      className="w-screen overflow-hidden h-full common-padding bg-zinc"
+      className="w-screen overflow-hidden h-full common-padding bg-black"
     >
       <div className="screen-max-width">
         {/* Title and links for highlights section */}
@@ -39,6 +39,7 @@ const Highlights = () => {
             </p>
           </div>
         </div>
+
         {/* Video Carousel section */}
         <VideoCarousel />
       </div>

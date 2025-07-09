@@ -6,7 +6,7 @@ import Model from "./components/Model";
 
 function App() {
   return (
-    <main className="bg-black">
+    <main className="bg-black overflow-y-auto">
       <Navbar />
       <Hero />
       <Highlights />

@@ -11,7 +11,6 @@ const VideoCarousel = () => {
   const videoRef = useRef([]);
   const videoSpanRef = useRef([]);
   const videoDivRef = useRef([]);
-
   const [video, setVideo] = useState({
     isEnd: false,
     startPlay: false,
@@ -37,6 +36,14 @@ const VideoCarousel = () => {
 
   // Function to handle loaded metadata for each video
   const handleLoadedMetadata = (i, e) => setLoadedData((pre) => [...pre, e]);
+
+  // a touch to activate video cause browser on iOS cant not be activate by
+  const handleUserGesture = () => {
+    videoRef.current.forEach((video) => {
+      video.play();
+      video.pause();
+    });
+  };
 
   useEffect(() => {
     let currentProgress = 0;
@@ -152,7 +159,7 @@ const VideoCarousel = () => {
 
   return (
     <>
-      <div className="flex item-center">
+      <div className="flex item-center" onClick={handleUserGesture}>
         {hightlightsSlides.map((list, i) => (
           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
             <div className="video-carousel_container">
@@ -164,9 +171,7 @@ const VideoCarousel = () => {
                   muted
                   // to set ref for each video element
                   ref={(el) => (videoRef.current[i] = el)}
-                  className={`${
-                    list.id === 2 && "translate-x-44"
-                  } pointer-events-none`}
+                  className={`${list.id === 2 && "translate-x-44"}`}
                   onEnded={() => {
                     if (i === 2) {
                       // Because the 3rd video is too short, we need to wait for 2 seconds

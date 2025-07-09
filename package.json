@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "lan": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -13,6 +14,7 @@
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.4.2",
     "@react-three/fiber": "^9.1.4",
+    "@sentry/react": "^9.35.0",
     "@tailwindcss/vite": "^4.1.10",
     "gsap": "^3.13.0",
     "react": "^19.1.0",
