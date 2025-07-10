@@ -107,7 +107,7 @@ canvas {
 }
 
 @utility hiw-video {
-  @apply absolute w-[95%] h-[90%] rounded-[56px] overflow-hidden;
+  @apply absolute overflow-hidden;
 }
 
 @utility hiw-text-container {
